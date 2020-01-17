@@ -9,7 +9,10 @@ class Movies(Resource):
 
     def get(self, id=None):
         if id:
-            return self.db.get(id)[0]
+            try:
+                return self.db.get(id)[0], 200
+            except (IndexError):
+                return "Movie not found", 404
         else: 
             return self.db.get_all()
 
