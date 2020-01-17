@@ -1,4 +1,5 @@
-from flask_restful import Api, Resource
+from flask_restful import Resource, reqparse
+from flask import request
 from Store import Store
 
 class Movies(Resource):
@@ -16,5 +17,12 @@ class Movies(Resource):
         else: 
             return self.db.get_all()
 
-    def post(self, name):
-        return self.db.insert({ "name": name })
+    def post(self):
+        new_movie = {}
+        try:
+            new_movie["name"] = request.values["name"]
+            new_movie["release_date"] = request.values["release_date"]
+        except:
+            return "The <name> and <release_date> fields are required", 400
+
+        return self.db.insert(new_movie), 201

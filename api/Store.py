@@ -18,6 +18,7 @@ class Store():
     def insert(self, new_object):
         new_object["id"] = str(uuid4())
         self.get_db().insert(new_object)
+        return new_object["id"]
  
     def get(self, id):
         query = Query().id == id
