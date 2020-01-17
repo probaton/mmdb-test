@@ -23,6 +23,9 @@ class Store():
         query = Query().id == id
         return self.get_db().search(query)
 
+    def get_all(self):
+        return self.get_db().all()
+
     def search(self, attribute, search_term):
         query = Query()[attribute].search(search_term + "+")
         return self.get_db().search(query)
