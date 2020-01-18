@@ -20,12 +20,16 @@ class Store():
         self.get_db().insert(new_object)
         return new_object["id"]
  
-    def get(self, id):
+    def get_by_id(self, id):
         query = Query().id == id
         return self.get_db().search(query)
 
     def get_all(self):
         return self.get_db().all()
+
+    def find(self, name, release_date):
+        query = Query()
+        return self.get_db().search((query.name == name) & (query.release_date == release_date)) 
 
     def search(self, attribute, search_term):
         query = Query()[attribute].search(search_term + "+")

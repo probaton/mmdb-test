@@ -11,7 +11,7 @@ class Movies(Resource):
     def get(self, id=None):
         if id:
             try:
-                return self.db.get(id)[0], 200
+                return self.db.get_by_id(id)[0], 200
             except (IndexError):
                 return "Movie not found", 404
         else: 
@@ -24,5 +24,9 @@ class Movies(Resource):
             new_movie["release_date"] = request.values["release_date"]
         except:
             return "The <name> and <release_date> fields are required", 400
+        
+        duplicate = self.db.find(new_movie["name"], new_movie["release_date"])
+        if duplicate:
+            return "There is already an entry with that <name> and <release_date>", 400
 
         return self.db.insert(new_movie), 201
