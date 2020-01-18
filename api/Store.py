@@ -3,13 +3,16 @@ from tinydb import TinyDB, where, Query
 from uuid import uuid4
 
 class Store():
+    __db_dir = "api/db/"
+
     def __init__(self, db_name):
-        self.__db_path = f"api/db/{db_name}.json"
+        self.__db_path = f"{self.__db_dir}{db_name}.json"
 
     def __get_db(self):
         try:
             return TinyDB(self.__db_path)
         except (FileNotFoundError):
+            os.mkdir(self.__db_dir)
             os.mknod(self.__db_path)
             return TinyDB(self.__db_path)
 
