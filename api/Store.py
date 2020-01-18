@@ -31,10 +31,10 @@ class Store():
     def get_all(self):
         return self.__get_db().all()
 
-    def find(self, name, release_date):
+    def find(self, title, release_date):
         query = Query()
-        return self.__get_db().search((query.name == name) & (query.release_date == release_date)) 
+        return self.__get_db().search((query.title == title) & (query.release_date == release_date)) 
 
     def search(self, search_term):
         query = Query()
-        return self.__get_db().search((query.name.search(search_term + "+")) | (query.release_date.search(search_term + "+")))
+        return self.__get_db().search((query.title.search(search_term + "+")) | (query.release_date.search(search_term + "+")))

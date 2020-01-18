@@ -19,13 +19,13 @@ class Movies(Resource):
     def post(self):
         new_movie = {}
         try:
-            new_movie["name"] = request.values["name"]
+            new_movie["title"] = request.values["title"]
             new_movie["release_date"] = request.values["release_date"]
         except:
-            return "The <name> and <release_date> fields are required", 400
+            return "The <title> and <release_date> fields are required", 400
         
-        duplicate = self.__db.find(new_movie["name"], new_movie["release_date"])
+        duplicate = self.__db.find(new_movie["title"], new_movie["release_date"])
         if duplicate:
-            return "There is already an entry with that <name> and <release_date>", 400
+            return "There is already an entry with that <title> and <release_date>", 400
 
         return self.__db.insert(new_movie), 201

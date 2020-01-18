@@ -5,7 +5,7 @@ def test_get_with_single_title_match():
 
     assert response.status_code == 200
     assert response.data == [{
-        "name": "Star Shreks",
+        "title": "Star Shreks",
         "release_date": "2001",
         "id": "1a13569f-bb3c-4c64-9126-680b3bce24de"
     }]
@@ -15,12 +15,12 @@ def test_get_with_multiple_title_matches():
 
     assert response.status_code == 200
     assert response.data == [{
-        "name": "Star Shreks",
+        "title": "Star Shreks",
         "release_date": "2001",
         "id": "1a13569f-bb3c-4c64-9126-680b3bce24de"
     },
     {
-        "name": "Star Shmores",
+        "title": "Star Shmores",
         "release_date": "1977",
         "id": "6f439813-5ecb-46e0-a88b-4809f43b331e"
     }]
@@ -30,12 +30,12 @@ def test_get_with_title_and_date_matches():
 
     assert response.status_code == 200
     assert response.data == [{
-        "name": "Star Shreks",
+        "title": "Star Shreks",
         "release_date": "2001",
         "id": "1a13569f-bb3c-4c64-9126-680b3bce24de"
     },
     {
-        "name": "2001: A Shpace Shmodyssey",
+        "title": "2001: A Shpace Shmodyssey",
         "release_date": "1968",
         "id": "0de7ddaa-6858-4d3c-b992-c9cb686849ef"
     }]
