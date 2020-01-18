@@ -7,13 +7,14 @@ class Movies(Resource):
         self.__db = Store("Movies")
 
     def get(self, id=None):
-        if id:
-            try:
-                return self.__db.get_by_id(id)[0], 200
-            except (IndexError):
-                return "Movie not found", 404
-        else: 
+        if not id:
             return self.__db.get_all()
+        
+        movie = self.__db.get_by_id(id)
+        if not movie:
+            return "Movie not found", 404
+
+        return movie, 200
 
     def post(self):
         new_movie = {}

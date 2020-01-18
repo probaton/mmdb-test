@@ -23,7 +23,10 @@ class Store():
  
     def get_by_id(self, id):
         query = Query().id == id
-        return self.__get_db().search(query)
+        try:
+            return self.__get_db().search(query)[0]
+        except (IndexError):
+            return None
 
     def get_all(self):
         return self.__get_db().all()
