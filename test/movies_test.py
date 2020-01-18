@@ -1,5 +1,3 @@
-import pytest
-
 from util import is_valid_uuid
 from movie_requests import get, post
 
