@@ -33,3 +33,15 @@ Run the API
 python api/mmdb.py
 ```
 
+### Running Tests
+Install dependencies
+```
+pip install -r test/requirements.txt
+```
+Run tests (NB: make sure the [API is up](#starting-the-api))
+```
+pytest
+```
+
+Profit! (I hope)
+
