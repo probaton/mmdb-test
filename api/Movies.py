@@ -4,16 +4,16 @@ from Store import Store
 
 class Movies(Resource):
     def __init__(self):
-        self.db = Store("Movies")
+        self.__db = Store("Movies")
 
     def get(self, id=None):
         if id:
             try:
-                return self.db.get_by_id(id)[0], 200
+                return self.__db.get_by_id(id)[0], 200
             except (IndexError):
                 return "Movie not found", 404
         else: 
-            return self.db.get_all()
+            return self.__db.get_all()
 
     def post(self):
         new_movie = {}
@@ -23,8 +23,8 @@ class Movies(Resource):
         except:
             return "The <name> and <release_date> fields are required", 400
         
-        duplicate = self.db.find(new_movie["name"], new_movie["release_date"])
+        duplicate = self.__db.find(new_movie["name"], new_movie["release_date"])
         if duplicate:
             return "There is already an entry with that <name> and <release_date>", 400
 
-        return self.db.insert(new_movie), 201
+        return self.__db.insert(new_movie), 201
