@@ -1,10 +1,8 @@
-from flask_restful import Resource, reqparse
+from flask_restful import Resource
 from flask import request
 from Store import Store
 
 class Movies(Resource):
-    db = None
-
     def __init__(self):
         self.db = Store("Movies")
 

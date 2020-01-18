@@ -31,6 +31,6 @@ class Store():
         query = Query()
         return self.get_db().search((query.name == name) & (query.release_date == release_date)) 
 
-    def search(self, attribute, search_term):
-        query = Query()[attribute].search(search_term + "+")
-        return self.get_db().search(query)
+    def search(self, search_term):
+        query = Query()
+        return self.get_db().search((query.name.search(search_term + "+")) | (query.release_date.search(search_term + "+")))
